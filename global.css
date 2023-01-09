@@ -1,0 +1,12 @@
+@import url("https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700&display=swap");
+
+* {
+  font-family: "JetBrains Mono", monospace;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  --primary-color: wheat;
+  --secondary-color: rgb(30, 30, 30);
+}

@@ -1,0 +1,37 @@
+body {
+  background-color: var(--primary-color);
+}
+
+section {
+  background-color: var(--secondary-color);
+  color: var(--primary-color);
+  margin: 1%;
+  padding: 1%;
+  border-radius: 10px;
+}
+
+tr,
+td {
+  background-color: var(--primary-color);
+  color: var(--secondary-color);
+  padding: 5px;
+}
+
+header {
+  background-color: var(--secondary-color);
+  color: var(--primary-color);
+  display: flex;
+  justify-content: space-between;
+  padding: 2%;
+  align-items: center;
+}
+
+header p {
+  font-size: 1.8em;
+}
+
+select {
+  background-color: var(--primary-color);
+  color: var(--secondary-color);
+  font-size: large;
+}

@@ -1,0 +1,41 @@
+body {
+  padding: 25px;
+  border: 25px solid var(--primary-color);
+  background-color: var(--secondary-color);
+}
+
+a:link,
+a:visited,
+a:hover,
+a:active {
+  color: inherit;
+  font-style: normal;
+  text-decoration: none;
+  user-select: none;
+}
+
+article {
+  background-color: var(--primary-color);
+  color: var(--secondary-color);
+  padding: 10px;
+}
+
+article:hover {
+  background-color: rgb(255, 238, 207);
+}
+
+p {
+  font-size: large;
+}
+
+h1 {
+  margin-bottom: 50px;
+  color: var(--primary-color);
+}
+
+.spacer {
+  background-color: var(--primary-color);
+  height: 1px;
+  margin-top: 25px;
+  margin-bottom: 25px;
+}
