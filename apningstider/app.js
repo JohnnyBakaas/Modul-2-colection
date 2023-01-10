@@ -1,7 +1,18 @@
 "use strict";
 
+let userLatitude = undefined;
+let userLongitude = undefined;
+
+let distanse = 0.01;
+
+let date = new Date();
+
+console.log(date.getDay());
+
 if ("geolocation" in navigator) {
   navigator.geolocation.getCurrentPosition(function (position) {
+    userLatitude = position.coords.latitude;
+    userLongitude = position.coords.longitude;
     console.log("Latitude: " + position.coords.latitude);
     console.log("Longitude: " + position.coords.longitude);
   });
@@ -9,22 +20,54 @@ if ("geolocation" in navigator) {
   console.log("Geolocation is not supported by this browser.");
 }
 
-const primaryKey = "4b65188e592941e9b60cc61e855cfadb";
-const secondaryKey = "6c917f331a394d2fb370ea159ef97a49";
+fetch("midlertidig.json")
+  .then((response) => response.json())
+  .then((data) => sortLocation(data));
 
-const testAPI = () => {};
+let closeStores = [];
 
-fetch("https://apis.vinmonopolet.no/stores/v0/details", {
-  method: "GET",
-  // Request headers
-  headers: {
-    "Cache-Control": "no-cache",
-    "Ocp-Apim-Subscription-Key": primaryKey,
-    origin: "https://api.vinmonopolet.no",
-  },
-})
-  .then((response) => {
-    console.log(response.status);
-    console.log(response.text());
-  })
-  .catch((err) => console.error(err));
+const sortLocation = (dataSort) => {
+  for (let i = 0; i < dataSort.length; i++) {
+    let cords = dataSort[i].address.gpsCoord.split(";");
+
+    if (
+      Number(cords[0]) - userLatitude < distanse &&
+      Number(cords[1]) - userLongitude < distanse &&
+      Number(cords[0]) - userLatitude > distanse * -1 &&
+      Number(cords[1]) - userLongitude > distanse * -1
+    ) {
+      console.log(dataSort[i].address.city);
+      console.log(dataSort[i].openingHours.regularHours);
+      closeStores.push(dataSort[i]);
+    }
+  }
+
+  if (closeStores.length === 0) {
+    distanse += 0.01;
+    sortLocation(dataSort);
+  }
+
+  console.log(closeStores[0]);
+
+  console.log(date.getDay());
+  generateHTML(closeStores[0]);
+};
+
+const generateHTML = (selectedStore) => {
+  console.log(
+    selectedStore.openingHours.regularHours[date.getDay() - 1].openingTime
+  );
+
+  let theHTML = /*HTML*/ `
+    <h2>Din nærmeste lovelige brennvin forhandler: ${
+      selectedStore.storeName
+    }</h2>
+    <p>Dagens åpningstider ${
+      selectedStore.openingHours.regularHours[date.getDay() - 1].openingTime
+    } - ${
+    selectedStore.openingHours.regularHours[date.getDay() - 1].closingTime
+  }</p>
+    `;
+
+  document.getElementById("app").innerHTML = theHTML;
+};
