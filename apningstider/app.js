@@ -59,14 +59,18 @@ const generateHTML = (selectedStore) => {
   );
 
   let theHTML = /*HTML*/ `
+  <h1>Ikke Vinmonopolet.no</h1>
     <h2>Din nærmeste lovelige brennvin forhandler: ${
       selectedStore.storeName
     }</h2>
     <p>Dagens åpningstider ${
-      selectedStore.openingHours.regularHours[date.getDay() - 1].openingTime
-    } - ${
-    selectedStore.openingHours.regularHours[date.getDay() - 1].closingTime
-  }</p>
+      selectedStore.openingHours.regularHours[date.getDay()].closed
+        ? "Polet er stengt"
+        : selectedStore.openingHours.regularHours[date.getDay() - 1]
+            .openingTime +
+          " - " +
+          selectedStore.openingHours.regularHours[date.getDay() - 1].closingTime
+    }</p>
     `;
 
   document.getElementById("app").innerHTML = theHTML;

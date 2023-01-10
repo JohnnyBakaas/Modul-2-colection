@@ -1,0 +1,11 @@
+body {
+  background-color: var(--primary-color);
+  color: var(--secondary-color);
+}
+
+#app {
+  margin: 20%;
+  padding: 10%;
+  background-color: var(--secondary-color);
+  color: var(--primary-color);
+}
