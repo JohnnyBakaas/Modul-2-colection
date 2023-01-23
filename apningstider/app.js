@@ -7,8 +7,6 @@ let distanse = 0.01;
 
 let date = new Date();
 
-console.log(date.getDay());
-
 if ("geolocation" in navigator) {
   navigator.geolocation.getCurrentPosition(function (position) {
     userLatitude = position.coords.latitude;
@@ -36,8 +34,6 @@ const sortLocation = (dataSort) => {
       Number(cords[0]) - userLatitude > distanse * -1 &&
       Number(cords[1]) - userLongitude > distanse * -1
     ) {
-      console.log(dataSort[i].address.city);
-      console.log(dataSort[i].openingHours.regularHours);
       closeStores.push(dataSort[i]);
     }
   }
@@ -47,17 +43,10 @@ const sortLocation = (dataSort) => {
     sortLocation(dataSort);
   }
 
-  console.log(closeStores[0]);
-
-  console.log(date.getDay());
   generateHTML(closeStores[0]);
 };
 
 const generateHTML = (selectedStore) => {
-  console.log(
-    selectedStore.openingHours.regularHours[date.getDay() - 1].openingTime
-  );
-
   let theHTML = /*HTML*/ `
   <h1>Ikke Vinmonopolet.no</h1>
     <h2>Din nærmeste lovelige brennvin forhandler: ${

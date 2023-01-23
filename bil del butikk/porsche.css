@@ -1,0 +1,14 @@
+.spoiler div {
+  width: 100px;
+  height: 10px;
+  background-color: black;
+  position: absolute;
+  margin-top: -540px;
+  margin-left: 50px;
+  rotate: 10deg;
+}
+
+.spoiler div div {
+  margin-top: 25px;
+  rotate: 30deg;
+}

@@ -1,0 +1,37 @@
+body {
+  display: flex;
+  justify-content: center;
+}
+
+.dark {
+  background-color: brown;
+}
+
+.light {
+  background-color: wheat;
+}
+
+#root {
+  display: flex;
+  width: 800px;
+  flex-wrap: wrap;
+}
+
+#root div {
+  width: 100px;
+  height: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 100px;
+}
+
+.white {
+  color: rgb(255, 255, 255);
+  text-shadow: 2px 2px black;
+}
+
+p {
+  margin: 0;
+  padding: 0;
+}
