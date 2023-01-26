@@ -1,0 +1,14 @@
+#game-root {
+  margin: 0;
+  padding: 0;
+}
+
+#game-root div {
+  display: flex;
+}
+
+#game-root div div {
+  width: 40px;
+  height: 40px;
+  font-size: 50px;
+}
